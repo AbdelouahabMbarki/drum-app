@@ -78,28 +78,27 @@ class App extends React.Component {
     })
 }
 togleBank(event){
-   store= store.reverse()
+  store= store.reverse()
   if(this.state.power){
     this.setState({
       bank: store[0].bank,
       display: store[0].bankName,
       bankSwitch: !this.state.bankSwitch
     },()=>{
+      console.log(this.state.bankSwitch)
       if(this.state.bankSwitch === false)
       document.getElementById("bank")
-      .classList.add("inner-animate-on");
-      else{        
+      .classList.remove("inner-animate-on");
+      else{     
+        console.log('tweeek')   
      document
     .getElementById("bank")
-    .classList.remove("inner-animate-on");
-      }
-
-    })
+    .classList.add("inner-animate-on");
+      }} )
   
   }
 }
 togleVolume(event){
-  console.log(event.target.value)
   this.setState({
     volume:event.target.value,
   })
@@ -123,7 +122,7 @@ togleVolume(event){
                   <button
                     id={"button-" + bt.keyTrigger}
                     onClick={this.handlePress} 
-                    className="drum-buttons"
+                    className="drum-pad drum-buttons"
                     key={index}
                   >
                     {bt.keyTrigger}
@@ -137,7 +136,7 @@ togleVolume(event){
                 <div className="control">
                   <p>Power</p>
                   <div  onClick={this.toglePower} className="select">
-                    <div id="power" className="inner" />
+                    <div id="power" className="inner inner-animate-on" />
                   </div>
                 </div>
                 <p id="display">{this.state.display}</p>
