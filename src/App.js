@@ -40,13 +40,11 @@ class App extends React.Component {
         {
           clipsIndex: clipIndex,
           display: this.state.bank[clipIndex].id,
-        },
-        () => {
-          this.audio = new Audio(this.state.bank[this.state.clipsIndex].url);
-          this.audio.volume = this.state.volume;
-          this.audio.play();
-        }
-      );
+        });
+       
+        this.audio = document.getElementById(eventValue.toUpperCase()) 
+        this.audio.volume = this.state.volume;
+        this.audio.play();
 
       document
         .getElementById("button-" + eventValue.toUpperCase())
@@ -85,12 +83,11 @@ togleBank(event){
       display: store[0].bankName,
       bankSwitch: !this.state.bankSwitch
     },()=>{
-      console.log(this.state.bankSwitch)
+
       if(this.state.bankSwitch === false)
       document.getElementById("bank")
       .classList.remove("inner-animate-on");
       else{     
-        console.log('tweeek')   
      document
     .getElementById("bank")
     .classList.add("inner-animate-on");
@@ -126,6 +123,7 @@ togleVolume(event){
                     key={index}
                   >
                     {bt.keyTrigger}
+                    <audio preload="auto" src={bt.url} className='clip' id={bt.keyTrigger} type='audio/mpeg'></audio>
                   </button>
                 ))}
               </div>
